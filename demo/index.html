@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TSTA Reserve | ポートフォリオデモ</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="container"><header><span class="tag">ポートフォリオ用・本番データ非接続</span><h1>TSTA Reserve — 予約運営の人物管理</h1><p>利用者のいるソフトテニス団体の運営課題をもとに設計。紹介参加者の仮ID・同名照合・誤統合防止をローカルで体験できます。</p></header>
+<main>
+<section><h2>1. 紹介参加者の仮ID</h2><p class="muted">友達紹介で参加する人に、紹介者本人とは別のIDを割り当てます。</p><label for="guestName">紹介された人の名前（架空の例）</label><input id="guestName" value="空野 星" maxlength="60"><label for="booker">紹介者の識別子（デモ用）</label><select id="booker"><option value="booker_A">利用者A</option><option value="booker_B">利用者B</option></select><button id="createGuest">仮IDを作成</button><output id="guestResult">ここに仮IDを表示します。</output></section>
+<section><h2>2. 候補照合（同一人物を自動確定しない）</h2><p class="muted">名前が一致しても、あくまで確認候補として提示します。管理者の確認なしには統合しません。</p><label for="registeredName">あとから登録された名前</label><input id="registeredName" value="空野 星" maxlength="60"><button class="secondary" id="checkMatch">候補を確認</button><output id="matchResult">仮ID作成後に確認できます。</output></section>
+<section class="full"><h2>3. 管理者の照合記録</h2><p class="muted">承認した試合・対象者・元の人物ID・名前などの条件が変わると、過去の承認を自動流用しません。</p><button class="secondary" id="checkReview">承認整合性のテスト</button><output id="reviewResult">確認すると、承認が維持される条件と無効になる条件を表示します。</output></section>
+<section class="full"><h2>システム構成の考え方</h2><div class="stats"><span>利用者の予約・紹介</span><span>→ ゲスト仮ID</span><span>→ 候補検出</span><span>→ 管理者照合</span><span>→ 記録の安全な関連付け</span></div><p class="warning">この画面は技術説明用の模擬デモです。Firebase / 実会員DB / 通知サービスには一切接続しません。ここでの操作は本番の予約や人物情報に影響しません。</p></section>
+</main><footer>Terakoya Systems | TSTA Reserve ポートフォリオ抜粋 | JavaScript (ES modules)</footer></div><script type="module" src="app.js"></script></body></html>

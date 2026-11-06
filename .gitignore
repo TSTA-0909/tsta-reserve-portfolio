@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.local
+*.log
+.DS_Store
+Thumbs.db
+coverage/
+dist/
+build/
+*.zip
+# Do not add Firebase credentials, exports, user data, or local databases
+serviceAccount*.json
+*firebase-adminsdk*.json
+*users-export*.json
+*firestore-export*/

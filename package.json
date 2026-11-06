@@ -1,0 +1,11 @@
+{
+  "name": "tsta-reserve-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Anonymized portfolio excerpt from TSTA Reserve: guest identity, review policy, waitlist offer routing. No production Firebase access.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test"
+  }
+}
