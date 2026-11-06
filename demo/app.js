@@ -24,10 +24,10 @@ $('checkMatch').addEventListener('click', () => {
   const person = {name:$('registeredName').value.trim(),status:'active'};
   const candidate = isPotentialGuestMatch(guest,person);
   $('matchResult').textContent = candidate
-    ? '候補あり：名前が一致しました。
-ただし同一人物とは断定せず、管理者の本人確認へ進めます。'
-    : '候補なし：名前や状態の条件が一致しません。
-誤統合を避けるため自動紐付けしません。';
+    ? `候補あり：名前が一致しました。
+ただし同一人物とは断定せず、管理者の本人確認へ進めます。`
+    : `候補なし：名前や状態の条件が一致しません。
+誤統合を避けるため自動紐付けしません。`;
 });
 $('checkReview').addEventListener('click', () => {
   const original={name:'空野 星',globalStableId:'person_demo_1',uid:'uid_demo_1'};
