@@ -1,0 +1,386 @@
+/* =========================================================
+   予約・参加者管理・待機リスト
+   admin.css 第四段階分割
+   ========================================================= */
+
+.reservation-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 6px;
+  align-items: start;
+}
+
+.reservation-row .user-name.open {
+  grid-column: 1;
+  display: block;
+}
+
+.user-name {
+  display: inline-block;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.user-name.open {
+  max-width: none;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.user-name.paid {
+  color: #c00;
+  font-weight: 700
+}
+
+.badge-rental {
+  font-size: 12px;
+  background: #eef5ff;
+  border: 1px solid #b5d0ff;
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: #0b3d91;
+  white-space: nowrap
+}
+
+.pay-btn.paid {
+  background: #ffeded;
+  color: #c00;
+  border-color: #f88
+}
+
+.cancel-btn {
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb
+}
+
+.wl-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px
+}
+
+.wl-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fafafa;
+  margin: 6px 0
+}
+
+.wl-rank {
+  font-weight: 700;
+  width: 26px;
+  text-align: center
+}
+
+.wl-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.wl-type {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #f2f2f2
+}
+
+.wl-actions .btn {
+  margin-left: 6px
+}
+
+.offer-list {
+  margin-top: 6px
+}
+
+.offer-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid #eee;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 6px;
+  margin: 6px 0
+}
+
+.offer-meta {
+  font-size: 12px;
+  color: #555
+}
+
+@media(max-width:420px) {
+.reservation-row {
+    gap: 6px
+  }
+}
+
+.offer-now {
+  margin: 6px 0 10px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #ffcc80;
+  background: #fff7e6;
+  color: #7a3e00;
+  white-space: nowrap;
+}
+
+#waitlistPanel {
+  width: 100%;
+}
+
+#waitlistPanel .wl-box {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#waitlistPanel .wl-list {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.limit-help {
+  margin-left: 10px;
+  color: #555;
+  font-size: 12px;
+}
+
+.btn-cancel-date {
+  background: #ffeaea;
+  color: #a33;
+  border-color: #f99;
+}
+
+.reservation-section-title {
+  font-weight: 800;
+  margin: 8px 0 6px;
+  padding: 6px 10px;
+  background: #eef5ff;
+  border-left: 4px solid #2563eb;
+  border-radius: 6px;
+}
+
+.reservation-setting-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.reservation-setting-actions .limit-help {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+}
+
+.reservation-setting-actions .btn-cancel-date {
+  margin-top: 4px;
+}
+
+.participants-limit-info {
+  margin: 6px 0 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #eef6ff;
+  color: #007acc;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* =========================================================
+   予約日カレンダー・参加上限入力
+   admin.css 第十六段階整理
+   ========================================================= */
+
+.main-flex {
+  display: flex;
+  gap: 18px;
+  max-width: 980px;
+  margin: auto;
+}
+
+.calendar-col {
+  flex: 1.1;
+  max-width: 420px;
+}
+
+.participants-col {
+  flex: 1;
+  max-width: 520px;
+}
+
+td.today {
+  background: #ffe4b2;
+}
+
+td.available {
+  background: #c0ffc0;
+}
+
+td.selected {
+  outline: 3px solid #000;
+  outline-offset: -3px;
+  background: #add8e6;
+  font-weight: 700;
+}
+
+#beginner,
+#experienced {
+  width: 80px;
+  font-size: 18px;
+  padding: 6px 8px;
+}
+
+@media(max-width:900px) {
+  .main-flex {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .calendar-col,
+  .participants-col {
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   シューズ貸出サイズ ツールチップ
+   ========================================================= */
+.shoes-tooltip {
+  position: absolute;
+  z-index: 2147483000;
+  max-width: min(260px, calc(100vw - 24px));
+  box-sizing: border-box;
+  padding: 7px 10px;
+  border: 1px solid #b8c7d9;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f2937;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+
+/* Admin previous month toggle */
+.admin-previous-month-control {
+  margin: 6px 0 8px;
+  padding: 7px 9px;
+  border: 1px solid #d7dde5;
+  border-radius: 8px;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.admin-previous-month-control label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-previous-month-control small {
+  display: block;
+  margin-top: 2px;
+  color: #667085;
+  font-size: 11px;
+}
+
+#calendarArea table[data-calendar-month="previous"] {
+  opacity: .92;
+}
+
+
+/* Visual Board per date/category */
+.match-title-actions {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.visual-board-open-btn {
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   V20.19 参加判定：欠席チェック方式
+   2026-10-11以降は「チェックあり = 欠席 / チェックなし = 参加」。
+   ========================================================= */
+.reservation-absence-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 64px;
+  min-height: 28px;
+  padding: 2px 7px;
+  border: 1px solid #cfd6df;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.reservation-absence-check input {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.reservation-absence-check.is-absent {
+  background: #fff2f0;
+  border-color: #ff9c8f;
+  color: #a61b11;
+}
+
+.reservation-legacy-attended {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  min-height: 28px;
+  padding: 2px 7px;
+  border: 1px solid #b7e2c2;
+  border-radius: 7px;
+  background: #eefbf1;
+  color: #177438;
+  font-size: 12px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.attendance-rule-note {
+  margin: -1px 0 6px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #fff8df;
+  color: #6b5300;
+  font-size: 11px;
+  line-height: 1.45;
+}

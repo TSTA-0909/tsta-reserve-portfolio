@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>TSTA Reserve｜管理者体験デモ</title><link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="assets/css/admin.css"><link rel="stylesheet" href="assets/css/admin-components.css"><link rel="stylesheet" href="assets/css/admin-layout.css"><link rel="stylesheet" href="assets/css/admin-reservations.css"><link rel="stylesheet" href="assets/tour.css"></head>
+<body class="tour-admin">
+<div class="tour-top" role="banner"><div class="tour-top-inner"><div class="tour-top-left"><span class="tour-pill">体験デモ</span><strong>TSTA Reserve</strong><span class="tour-muted">管理者の画面</span></div><div class="tour-top-right"><label class="tour-switch"><input type="checkbox" id="guideToggle" checked> 操作ガイド</label><button type="button" id="resetTour" class="tour-subtle-btn">↻ 最初から</button><span class="tour-stage" id="tourStep"></span></div></div><div class="tour-progress"><div id="tourProgress"></div></div></div>
+<header class="admin-topbar"><div class="admin-brand"><img src="assets/icon.png" alt="TSTA" class="admin-brand-logo"><strong>管理者：予約日設定</strong></div><nav class="admin-topnav" aria-label="管理画面メニュー"><a href="#calendarArea">📅 予約日設定</a><a href="#reservationInfo">▣ 予約一覧</a><a href="#waitlistPanel">⏳ キャンセル待ち</a></nav><div class="admin-account-tools"><a class="tour-top-user-link" href="index.html">← 予約画面へ</a></div></header>
+<main class="admin-page"><section class="admin-page-heading"><h1>👤 管理者：予約日設定</h1><p class="tour-small">本番の管理者画面のレイアウトを元にした架空データ専用の体験版です。</p></section>
+<div class="admin-dashboard-shell"><div class="main-flex">
+<div class="panel calendar-col"><div class="section"><h3>予約可能日設定</h3><div class="tour-admin-limit-row"><label>初心者上限：<input id="beginner" type="number" min="1" value="4"></label><label>経験者上限：<input id="experienced" type="number" min="1" value="4"></label></div><p class="tour-small">体験では開催日と定員が固定されています。ここは本番の管理項目を表示しています。</p><div class="mt-6">選択日：<b id="selectedDateDisplay">未選択</b></div></div><div id="calendarArea" class="tour-admin-calendar"></div><div class="section current-setting-box" id="currentSettingBox">（日付未選択）</div></div>
+<div class="panel participants-col" id="reservationInfo"><div class="section"><div class="section-title"><h3 id="participantsTitle">🔎 参加者一覧（未選択）</h3></div><div id="participantsLimitInfo" class="participants-limit-info">上限設定：未選択</div><div id="beginnerList" class="tour-people-group"></div>
+<div id="adminBookingConfirmation" class="tour-admin-booking-confirmation" role="status" aria-live="polite" hidden>
+  <strong>✅ さっき予約した人を確認しよう！</strong>
+  <p>この参加者一覧に<strong id="adminConfirmedName">空野 星</strong>さんの <b id="adminConfirmedDate">11月14日</b> の予約が表示されています。</p>
+  <button type="button" id="adminConfirmNext" class="tour-confirm-action">✅ 参加者一覧で名前を確認した！ 次へ進む →</button>
+</div><div id="cancelGuideNote" class="tour-cancel-guide" role="status" aria-live="polite" hidden><strong>🎮 次は、参加者を1人取り消そう！</strong><p>下の「経験者(A)」の一覧にある、<b>架空参加者の赤い「参加取消」</b>を1回押してください。空いた枠の通知が準備されます。</p></div><div id="experiencedList" class="tour-people-group"></div>
+<div id="adminPromotionConfirmation" class="tour-admin-booking-confirmation" hidden aria-live="polite">
+  <strong>✅ 繰り上がり予約が管理者一覧に反映されました！</strong>
+  <p><strong id="adminPromotedName">空野 星</strong> さんが <strong id="adminPromotedDate">11月21日</strong>の<strong>経験者(A)参加者一覧</strong>に入ったことを確認してください。</p>
+  <button type="button" id="adminPromotionConfirmNext" class="tour-confirm-action">✅ 名前を確認した！ 体験を完了する　→</button>
+</div></div></div>
+</div>
+<div class="panel section admin-wide-panel" id="waitlistPanel"><div class="section-title"><h3>⏳ キャンセル待ち（この日）</h3><div class="muted">現在のキャンセル待ち登録者を先頭から表示します。</div></div><div id="wlBox" class="wl-box"><div class="wl-head"><span class="wl-type">経験者</span><span class="muted" id="wlCountExperienced"></span></div><div class="wl-list" id="wlListExperienced"></div></div><div class="tour-admin-linkbox"><strong>予約側の表示も体験してみよう</strong><p id="goUserExplanation">満席の日にキャンセル待ちを登録すると、この一覧に反映されます。</p><a href="index.html" class="tour-hop-button" id="goUserWait">予約側でキャンセル待ちをする　→</a><a href="index.html" class="tour-hop-button" id="goUserNotice" hidden>予約側へ戻って通知を確認　→</a></div></div>
+<section id="tourCompleteBanner" class="tour-complete-banner" hidden aria-live="polite">
+  <h2>🎉 基本の体験は完了！</h2>
+  <p>予約から管理者確認、キャンセル待ち、通知、繰り上がり予約の管理者反映まで体験できました。</p>
+  <p>実はこのほかにも、試合管理・戦績表・メンバー管理などを作っています。</p>
+  <button id="discoverFeaturesBtn" type="button" class="tour-confirm-action">🎾 ほかの機能も見てみる　→</button>
+</section>
+<div class="panel section admin-wide-panel" id="otherFeaturesPanel"><div class="section-title"><h3>🎾 ほかの機能も見てみる（任意）</h3></div>
+<p class="tour-small">ここから先は自由見学。気になるボタンを押すと、その機能の役割を紹介します。予約・キャンセル待ちのガイドには影響しません。</p>
+<div class="tour-other-features">
+ <button type="button" data-feature="tournament">🏆 大会管理</button>
+ <button type="button" data-feature="members">👥 メンバー管理</button>
+ <button type="button" data-feature="notice">📢 お知らせ</button>
+ <button type="button" data-feature="matches">🎾 試合ボード</button>
+ <button type="button" data-feature="profile">👤 プロフィール</button>
+ <button type="button" data-feature="stats">📊 戦績表</button>
+ <button type="button" data-feature="chat">💬 管理者チャット</button>
+</div>
+<p class="tour-small">※いずれも機能紹介のみ。実際の本番システムには接続しません。</p>
+<dialog id="featureDialog" class="tour-feature-dialog" aria-labelledby="featureTitle">
+ <h3 id="featureTitle">機能紹介</h3>
+ <p id="featureDescription" class="tour-feature-lead"></p>
+ <h4>主な使い方</h4><ul id="featureExamples" class="tour-feature-examples"></ul>
+ <div class="tour-feature-insight"><strong>この機能で工夫したこと</strong><p id="featureInsight"></p></div>
+ <p class="tour-small">※紹介用の説明です。この画面から本番データの閲覧・更新や通知送信は行いません。</p>
+ <button type="button" class="tour-confirm-action" id="closeFeatureDialog">紹介を閉じる</button>
+</dialog></div>
+</div></main>
+<div id="tourBubble" class="tour-bubble" hidden role="status"><div class="tour-bubble-top"><span class="tour-bubble-kicker">🎮 操作ガイド</span><button type="button" id="tourClose" aria-label="ガイドを閉じる">×</button></div><strong class="tour-bubble-title"></strong><p class="tour-bubble-text"></p></div><div id="tourToast" class="tour-toast" role="status" aria-live="polite"></div>
+<script type="module" src="admin.js"></script></body></html>

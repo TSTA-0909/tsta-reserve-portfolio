@@ -1,0 +1,297 @@
+﻿/* 管理画面：お知らせ・チャットUI
+   admin.css 第五段階分割で移動。表示仕様は変更しない。 */
+
+.chat-message {
+  display: flex;
+  margin-bottom: 8px
+}
+
+.chat-bubble {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #e9e9e9
+}
+
+.chat-message.user .chat-bubble {
+  background: #f3faff
+}
+
+.chat-message.admin .chat-bubble {
+  background: #b7e3fa;
+  color: #10406b
+}
+
+.notice-history-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f5f8ff;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.notice-history-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.notice-history-item:last-child {
+  border-bottom: none;
+}
+
+.notice-history-date {
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+/* ===== 管理者チャット・右上アイコン／モーダル ===== */
+.admin-chat-floating-btn {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #d8e0ea;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  font-size: 21px;
+  box-shadow: 0 4px 14px rgba(31, 48, 74, .12);
+}
+
+.admin-chat-unread-badge {
+  position: absolute;
+  top: -5px;
+  right: -6px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  background: #e53935;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 15px;
+  box-sizing: border-box;
+}
+
+.admin-chat-modal-panel {
+  width: min(1040px, calc(100vw - 32px));
+  max-height: min(820px, calc(100vh - 32px));
+}
+
+.admin-chat-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 34%) minmax(0, 1fr);
+  gap: 16px;
+  min-height: 520px;
+}
+
+.admin-chat-users,
+.admin-chat-conversation {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.admin-chat-list-title {
+  margin: 12px 0 6px;
+  font-weight: 800;
+}
+
+#userList .user-item {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #e6ebf1;
+  border-radius: 10px;
+  background: #f8fafc;
+  text-align: left;
+  cursor: pointer;
+}
+
+#userList .user-item:hover {
+  background: #eef6ff;
+  border-color: #b9d8ff;
+}
+
+.admin-chat-read-badge {
+  background: #8a94a3 !important;
+}
+
+.admin-chat-conversation #chatBox {
+  min-height: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #e6ebf1;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+@media (max-width: 760px) {
+  .admin-chat-layout {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .admin-chat-modal-panel {
+    width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+  }
+
+  .admin-chat-conversation #chatBox {
+    min-height: 260px;
+    max-height: 42vh;
+  }
+}
+
+/* ===== 管理者チャット：既読ボタン・簡易スタンプ ===== */
+.admin-chat-user-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.admin-chat-user-row .user-item {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+.admin-chat-handle-btn {
+  flex: 0 0 auto;
+  border: 1px solid #9aa4b2;
+  border-radius: 9px;
+  background: #fff;
+  padding: 7px 10px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.admin-chat-handle-btn:hover {
+  background: #f1f5f9;
+}
+
+.admin-chat-handle-btn:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.chat-stamp-area {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.chat-stamp-area-title {
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.chat-stamp-palette {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.chat-stamp-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  padding: 7px 8px;
+  cursor: pointer;
+}
+
+.chat-stamp-button span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.chat-stamp-button small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.chat-stamp-button:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.chat-stamp-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-stamp-emoji {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.chat-stamp-label {
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .admin-chat-user-row {
+    align-items: center;
+  }
+
+  .admin-chat-handle-btn {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .chat-stamp-palette {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 管理者チャット：利用者一覧・未読表示 */
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px;
+  border-radius: 7px;
+  background: #f7f7fa;
+  border: 1px solid #ddd;
+  margin-bottom: 4px;
+}
+
+.user-item.selected {
+  background: #ccefff;
+}
+
+.badge {
+  background: #d50000;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 12px;
+  padding: 1px 7px;
+  margin-left: 6px;
+}
+
+.time {
+  font-size: 11px;
+  color: #888;
+  margin-left: 6px;
+}
+

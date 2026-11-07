@@ -1,0 +1,195 @@
+/* Experience-specific overlay and controls. Base layouts and key UI classes come from the original TSTA Reserve CSS. */
+:root{--tour-ink:#17324b;--tour-blue:#146a8b;--tour-sky:#d7eff6;--tour-orange:#e97f2c;--tour-border:#d6e4eb;--tour-shadow:0 10px 28px rgba(17,58,81,.11)}
+*{box-sizing:border-box} [hidden]{display:none!important}
+body{padding-top:88px!important;font-family:system-ui,-apple-system,'Segoe UI',sans-serif!important;color:#1a3445}
+button,select,input{font-family:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}
+.tour-top{position:fixed;top:0;left:0;right:0;background:#fff;box-shadow:0 3px 15px #12344b17;z-index:2000;border-bottom:1px solid #d6e3e9}
+.tour-top-inner{max-width:1140px;margin:auto;min-height:61px;padding:8px 18px;display:flex;align-items:center;gap:20px;justify-content:space-between}
+.tour-top-left,.tour-top-right{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.tour-top-left strong{font-size:17px}.tour-muted{color:#667c8b;font-size:13px}.tour-pill{background:#e8f5f7;border:1px solid #c2e4e8;color:#09536a;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:800}
+.tour-top button,.tour-top label,.tour-top input{width:auto;margin:0;padding:6px 10px;font-size:12px}.tour-switch{display:flex;align-items:center;gap:5px;font-weight:700;white-space:nowrap}
+.tour-switch input{accent-color:#137e8c;width:16px;height:16px}.tour-subtle-btn{background:#f2f6f9;border:1px solid #d5e0e7;color:#35556a;border-radius:8px;padding:8px 12px;width:auto}.tour-stage{font-size:12px;color:#567083;white-space:nowrap}
+.tour-progress{width:100%;height:5px;background:#dfeaf0}.tour-progress>div{height:100%;width:8%;background:linear-gradient(90deg,#1b889d,#e9812b);transition:width .4s}
+.tour-profile-float{position:fixed!important;top:96px!important;right:16px!important;width:54px!important;z-index:700!important;box-shadow:0 4px 15px #0002}
+.tour-user{background:#f9f9f9!important}
+.tour-user .user-page-title{max-width:1000px;margin:8px auto 20px;padding:0 12px;font-weight:800}
+.tour-identity-label{display:inline-block;font-size:12px;color:#647c8b;font-weight:400;margin-left:12px}
+.tour-user .user-dashboard{max-width:1140px;margin:auto;gap:22px}
+.tour-user .user-dashboard-main{min-width:0}.tour-user .user-dashboard-side{min-width:0}
+.tour-user .user-dashboard-panel{display:block}.tour-user .user-dashboard-panel[hidden]{display:none}
+.tour-user .reservation-list,.tour-user .user-dashboard-panel,.tour-user .user-dashboard-menu,.tour-side-info{border-radius:12px}
+.tour-user .user-dashboard-menu-btn{color:#17374a}.tour-user .user-dashboard-menu-btn:focus-visible{outline:3px solid #e9812b;outline-offset:2px}
+.tour-user-profile-compact{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#eef6fb;border:1px solid #cddfeb;border-radius:8px;padding:12px!important;flex-wrap:wrap}
+.tour-link-btn{width:auto!important;display:inline-block;background:#fff;color:#176b8a;border:1px solid #bddce7;border-radius:8px;padding:7px 11px;font-size:13px!important;margin:0!important}
+.tour-user .user-dashboard-panel input[type=checkbox]{width:auto!important}
+.tour-action-panel{background:#fff;border:1px solid var(--tour-border);padding:16px;margin-top:12px}
+.tour-user .reservation-center{margin:14px 0}.tour-user .reservation-center select{max-width:500px}
+.tour-calendar-note{text-align:center!important;color:#5b6874!important;font-size:14px!important;margin:10px auto 24px!important;line-height:1.5}
+.tour-calendar-month{background:#fff;border:1px solid #dce3e8;border-radius:12px;padding:13px;box-shadow:0 3px 8px #1a334b08;max-width:390px;width:100%}
+.tour-calendar-month h4{text-align:center;margin:0 0 10px;color:#284256}
+.tour-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-top:3px}
+.tour-cal-weekdays span{text-align:center;color:#6c7d89;font-size:12px;font-weight:800;padding:5px 0}.tour-cal-weekdays span:first-child{color:#d35a5a}.tour-cal-weekdays span:last-child{color:#2879b2}
+.tour-day{appearance:none;border:1px solid #dce3e7;background:#f1f3f5;border-radius:7px;min-width:0;min-height:38px;width:100%!important;margin:0!important;padding:0!important;font-size:14px!important;color:#6f7c83;transition:transform .12s,box-shadow .12s}
+.tour-day.tour-disabled{background:#f1f2f3;color:#aeb6bc;cursor:default;opacity:1}
+.tour-day.tour-open{background:#cbf0d8;color:#064d24;font-weight:900;border:1px solid #74cda2}
+.tour-day.tour-full{background:#59636d;color:#fff;font-weight:900;border:1px solid #48525d}
+.tour-day.tour-selected{outline:3px solid #ee832a;outline-offset:1px;transform:scale(1.03);box-shadow:0 4px 15px #0002}
+.tour-day:not(:disabled):hover{transform:translateY(-2px);filter:brightness(1.05)}
+.tour-user .calendar-container{display:flex;flex-flow:row wrap;justify-content:center;gap:16px;margin:12px auto 0}
+.tour-selection-status{margin:14px 0;background:#f4f9fc;padding:12px;border-radius:8px;color:#2d5064;text-align:center;font-size:14px}
+.tour-cta{background:#117588!important;color:#fff!important;border:0!important;border-radius:9px!important;padding:12px 16px!important;font-weight:800;width:auto!important;min-height:44px;box-shadow:0 3px 8px #0d6d7f22}
+.tour-user #reserveBtn{display:block;width:100%!important;font-size:17px!important}.tour-user #reserveBtn:not(:disabled):hover,.tour-cta:hover{background:#095b6a!important}
+.tour-empty{font-size:13px;color:#667987;background:#f7fafc;padding:12px;border-radius:8px}
+.tour-my-reservation{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px;border-bottom:1px solid #e0e9ed;font-size:14px;flex-wrap:wrap}
+.tour-bottom-hop{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#fff;border:1px solid #d5e3ea;padding:18px;margin:26px 0 42px;border-radius:12px;box-shadow:var(--tour-shadow)}
+.tour-bottom-hop p,.tour-admin-linkbox p{margin:5px 0 0;color:#607886;font-size:13px}
+.tour-hop-button{display:inline-flex!important;align-items:center;justify-content:center;width:auto!important;margin:0!important;text-decoration:none!important;font-size:14px!important;background:#136b85!important;color:#fff!important;font-weight:800!important;padding:13px 16px!important;border-radius:10px!important;border:0!important;white-space:normal}
+.tour-hop-button:hover{background:#0c536b!important}
+.tour-side-info{padding:20px;background:#e9f3f7;border:1px solid #d5e5eb;margin-top:15px;line-height:1.65}.tour-side-info h3{font-size:16px;color:#244a60}.tour-side-info p{font-size:13px;color:#355b6d}
+.tour-small{font-size:12px!important;line-height:1.6;color:#6d8291;font-weight:400}
+.tour-notice-open{box-shadow:0 0 0 3px #e9832b66}
+.tour-finished{margin:20px auto 50px;max-width:850px;background:#ecf9f3;border:1px solid #b2e3ca;padding:24px;border-radius:14px}
+.tour-dialog{border:1px solid #d2e3e9;border-radius:16px;max-width:460px;width:calc(100% - 30px);padding:24px;box-shadow:0 25px 65px #112f3a50}
+.tour-dialog::backdrop{background:rgba(17,41,55,.52)}.tour-dialog h2{margin:0 0 14px;color:#21475e;font-size:20px}
+.tour-dialog label{display:block;font-weight:700;margin:12px 0 4px}.tour-dialog input{width:100%;border:1px solid #a6bdcd;border-radius:8px;padding:10px}
+.tour-dialog-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:20px}.tour-dialog-actions button{width:auto}
+/* Native modal: top-layer dialog + backdrop block all background interactions. */
+.tour-offer-dialog{position:fixed;inset:0;margin:auto;width:min(530px,calc(100vw - 32px));max-width:calc(100vw - 24px);max-height:calc(100dvh - 32px);padding:0;border:2px solid #51a7b2;border-radius:18px;background:#fff;color:#17324b;box-shadow:0 24px 80px #081c2b70;overflow:auto}
+.tour-offer-dialog::backdrop{background:rgba(9,26,38,.65)}
+.tour-notification{display:flex;align-items:center;flex-direction:column;gap:14px;padding:28px 26px;text-align:center}
+.tour-notice-icon{font-size:44px;line-height:1.2;background:#e6f6f8;border-radius:50%;width:76px;height:76px;display:grid;place-items:center}
+.tour-offer-copy{width:100%}.tour-offer-copy strong{display:block;color:#136580;font-size:22px;line-height:1.45}.tour-offer-copy p{margin:12px 0;line-height:1.65;font-size:15px}.tour-offer-copy span{display:block;font-size:12px;color:#6a8290;line-height:1.6}.tour-offer-copy #offerExplanation{background:#f2fafb;border-radius:10px;padding:12px;font-size:14px}
+.tour-offer-dialog #offerAccept{font-size:16px!important;width:100%!important;max-width:360px;margin-top:8px!important}
+.tour-bubble{position:fixed;top:150px;left:22px;width:310px;background:#fff9ef;border:1px solid #eea45d;box-shadow:0 10px 36px #264e5840;border-radius:14px;padding:14px 16px;z-index:2600;pointer-events:none;max-height:55vh;overflow:auto}
+.tour-bubble::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#e9812b,#e9bd51);border-radius:14px 14px 0 0}
+.tour-bubble-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.tour-bubble-kicker{font-size:12px;color:#aa5f1b;font-weight:800}
+.tour-bubble #tourClose{margin:0;padding:0;width:28px;height:28px;background:transparent;border:0;font-size:18px;color:#72512f;cursor:pointer;pointer-events:auto}
+.tour-bubble-title{display:block;font-size:16px;color:#60390c}.tour-bubble-text{font-size:13px;line-height:1.6;color:#715a3a;margin:5px 0 0}
+.tour-highlight{outline:3px solid #ed8b28!important;outline-offset:5px!important;position:relative;z-index:10;box-shadow:0 0 0 7px #f8bf6f35!important}
+.tour-toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#193e50;color:#fff;max-width:90vw;padding:12px 22px;border-radius:12px;z-index:2900;transition:opacity .2s,transform .2s;text-align:center;box-shadow:0 10px 25px #0004}
+.tour-toast.show{opacity:1;transform:translate(-50%,0)}
+.tour-admin{background:#f7f9fc!important;padding-top:66px!important}.tour-admin .admin-topbar{top:66px;z-index:500}
+.tour-admin .admin-brand-logo{background:#fff;object-fit:contain;width:68px;height:48px}
+.tour-admin .admin-page{max-width:1140px;margin:auto;padding:10px 16px 45px}
+.tour-admin .admin-page-heading{margin:6px 0 17px}.tour-admin .admin-page-heading h1{font-size:23px}
+.tour-admin .admin-topnav a{font-size:13px}.tour-top-user-link{font-size:13px;font-weight:700;color:#1c6d88;text-decoration:none}
+.tour-admin .main-flex{gap:16px}.tour-admin .panel{padding:17px;border:1px solid #e0e9f0}
+.tour-admin .tour-admin-calendar .tour-calendar-month{margin:0 auto 16px;box-shadow:none}.tour-admin-calendar{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.tour-admin-limit-row{display:flex;flex-wrap:wrap;gap:8px}.tour-admin-limit-row label{font-size:13px}.tour-admin-limit-row input{max-width:58px;height:30px;border-radius:6px;border:1px solid #c2d1da;padding:5px;color:#5f6e7c;background:#f5f8fa}
+.tour-admin .admin-wide-panel{max-width:none;margin:15px 0}.tour-people-group{margin:10px 0}.tour-people-head{font-size:14px;color:#275471;background:#eaf3f9;padding:9px 12px;border-radius:7px;margin:8px 0}
+.tour-person-row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:11px 8px;border-bottom:1px solid #e5edf1}
+.tour-person-row>div{min-width:0}.tour-person-row strong{display:block;font-size:15px}.tour-person-row span{font-size:11px;color:#728697}
+.tour-person-row button{width:auto;font-size:12px;border-radius:7px;border:1px solid #f2a5a5;padding:7px 12px;color:#9a2121;white-space:nowrap}
+.tour-cancel-guide{margin:15px 0 12px;background:#fff4e8;border:2px solid #ee8b34;border-left:6px solid #e87e26;padding:14px 16px;border-radius:10px;color:#683900;box-shadow:0 6px 16px #81431516}
+.tour-cancel-guide strong{display:block;font-size:16px}.tour-cancel-guide p{font-size:14px;line-height:1.65;margin:7px 0 0}.tour-cancel-guide b{color:#a42020}
+#cancelSeedBtn{border:2px solid #ce4343;background:#fff4f3;font-weight:800;color:#9b1e1e}
+.tour-admin-linkbox{border:1px solid #d6e7ee;background:#f5fafc;border-radius:10px;padding:14px;margin-top:16px}.tour-admin-linkbox .tour-hop-button{margin-top:12px!important}
+.tour-other-features{display:flex;gap:8px;flex-wrap:wrap}.tour-other-features span{border:1px solid #dce8ed;background:#f8fafb;border-radius:8px;padding:8px 12px;font-size:13px}
+@media(max-width:850px){.tour-top-inner{gap:8px;padding:7px 10px}.tour-muted{display:none}.tour-top-left strong{font-size:14px}.tour-user .user-dashboard{display:block}.tour-user .user-dashboard-side{margin-top:20px}.tour-admin .admin-topnav{display:none}.tour-admin .main-flex{display:block}.tour-admin .main-flex>.panel{margin-bottom:12px}}
+@media(max-width:540px){.tour-top-inner{min-height:62px}.tour-top-left{gap:6px}.tour-top-right{gap:5px}.tour-top .tour-subtle-btn{padding:5px}.tour-stage{display:none}.tour-profile-float{right:12px!important;top:98px!important}.tour-user .user-page-title{font-size:24px;margin-right:60px}.tour-admin .admin-topbar{min-height:55px;padding:5px 12px}.tour-admin .admin-brand strong{font-size:14px}.tour-admin .admin-brand-logo{width:47px;height:36px}.tour-admin .admin-page{padding:10px}.tour-bubble{padding:12px;font-size:12px}.tour-cal-grid{gap:2px}.tour-day{min-height:36px}.tour-bottom-hop{display:block}.tour-bottom-hop .tour-hop-button{margin-top:10px!important;width:100%!important}.tour-notification{padding:24px 16px}.tour-offer-copy strong{font-size:20px}}
+
+@media(max-width:540px){.tour-bubble{top:auto!important;bottom:12px!important;left:12px!important;width:calc(100vw - 24px)!important;max-height:180px}.tour-admin .admin-topbar{position:static!important;top:auto!important}.tour-day,.tour-person-row button{scroll-margin-top:125px}}
+/* Ver 0.3: the instruction card must remain conspicuous and inside the viewport. */
+.tour-bubble:not([hidden]){display:block!important;visibility:visible!important;opacity:1!important;z-index:5000!important;background:#fff5df!important;border:3px solid #ef8324!important;box-shadow:0 14px 45px rgba(80,45,4,.31)!important;max-width:calc(100vw - 24px);pointer-events:auto!important}
+.tour-bubble:not([hidden]) .tour-bubble-title{color:#693300;font-size:17px;line-height:1.4}
+.tour-bubble:not([hidden]) .tour-bubble-text{color:#513d2c;font-size:14px;font-weight:600;line-height:1.65}
+.tour-highlight{outline:4px solid #f07816!important;outline-offset:4px!important;box-shadow:0 0 0 8px #f7a54950!important;scroll-margin-top:135px}
+@media (max-width:760px){.tour-bubble:not([hidden]){top:auto!important;bottom:12px!important;left:12px!important;right:12px!important;width:auto!important;max-height:200px;overflow:auto}.tour-highlight{scroll-margin-bottom:220px!important}}
+
+/* Ver 0.4: clearly distinguish an orange GUIDE target from a selected date. */
+.tour-guide-action{display:block;width:100%;margin:12px 0 0;padding:10px 14px;border:0;border-radius:9px;background:#e97923;color:#fff;font-size:14px;font-weight:800;cursor:pointer;pointer-events:auto}
+.tour-guide-action:hover,.tour-guide-action:focus-visible{background:#c75e0d;outline:2px solid #fff;outline-offset:-4px}
+.tour-guide-action[hidden]{display:none!important}
+.tour-day.tour-selected{background:#fce1ba!important;border:3px solid #c96b13!important;color:#71380e!important;position:relative;font-weight:900!important}
+.tour-day.tour-selected::after{content:'✓';position:absolute;right:2px;top:0;font-size:11px;color:#71380e}
+.tour-selection-status{line-height:1.6;font-weight:700!important}
+.tour-user #reserveBtn:disabled{background:#a6bdc5!important;color:#20333b!important;opacity:1!important;box-shadow:none!important;cursor:not-allowed}
+
+/* v0.5: explicit reservation confirmation before switching roles. */
+.tour-booking-confirmation{background:#fff8ea;border:2px solid #e78220;border-left:7px solid #e78220;padding:16px 18px;border-radius:12px;margin:15px 0 3px;box-shadow:0 5px 18px #7d58172b;scroll-margin-top:110px}
+.tour-booking-confirmation p{margin:6px 0 12px;line-height:1.65;color:#533916}
+.tour-booking-confirmation .tour-booking-success{font-size:19px;color:#195e53}
+.tour-booking-confirmation .tour-cta{font-size:15px!important;max-width:100%;width:auto!important;margin-top:6px!important}
+.tour-booking-confirmation.tour-highlight{outline-offset:3px!important}
+.tour-hop-disabled{opacity:.55!important;cursor:not-allowed!important;filter:grayscale(.35)}
+@media(max-width:540px){.tour-booking-confirmation{padding:13px}.tour-booking-confirmation .tour-cta{width:100%!important}}
+
+/* v0.6: administrator must visually confirm the actual participant list before waitlist tour. */
+#reservationInfo.tour-highlight{outline-offset:3px!important;scroll-margin-top:230px!important}
+#tourMineReservation.tour-highlight{border-radius:8px;background:#fff4e6!important;outline:3px solid #eb801e!important;outline-offset:2px!important;box-shadow:0 0 0 5px #ffca7950!important}
+.tour-admin-booking-confirmation{background:#fff8e9;border:2px solid #ec8524;border-left:6px solid #df7820;padding:12px 13px;margin:10px 0;border-radius:10px;color:#69400b}
+.tour-admin-booking-confirmation>strong{font-size:16px;color:#a25200}
+.tour-admin-booking-confirmation p{font-size:14px;line-height:1.6;margin:7px 0 10px}
+.tour-confirm-action{background:#e77720!important;color:white!important;border:0!important;border-radius:9px!important;padding:11px 13px!important;font-weight:800!important;font-size:14px!important;width:auto!important;margin:4px 0!important;cursor:pointer}
+.tour-confirm-action:hover,.tour-confirm-action:focus-visible{background:#bf560a!important;outline:2px solid #ffcf89}
+.tour-other-features button{border:1px solid #dce8ed;background:#f8fafb;border-radius:8px;padding:9px 13px;font-size:13px;width:auto;margin:0;color:#1e6079}
+.tour-other-features button:hover,.tour-other-features button:focus-visible{border-color:#e9812b;background:#fff5e8;outline:2px solid #e9812b;outline-offset:2px}
+.tour-feature-dialog{max-width:min(460px,calc(100vw - 28px));border:2px solid #e9812b;border-radius:16px;padding:22px;box-shadow:0 15px 50px #182a3740}
+.tour-feature-dialog::backdrop{background:rgba(20,35,42,.54)}
+.tour-feature-dialog p{font-size:15px;line-height:1.7}
+@media(max-width:760px){#reservationInfo.tour-highlight{scroll-margin-top:145px!important}.tour-admin-booking-confirmation .tour-confirm-action{width:100%!important}}
+
+
+/* v0.7 — unobstructed right-bottom admin guidance, subtle motion cues */
+.tour-admin .tour-bubble:not([hidden]){max-width:min(330px,calc(100vw - 36px))}
+.tour-guide-attention:not([hidden]){animation:tour-tip-attention 1.2s ease-in-out 2}
+@keyframes tour-tip-attention{
+  0%,100%{box-shadow:0 14px 45px rgba(80,45,4,.31)}
+  50%{box-shadow:0 0 0 9px rgba(238,131,36,.27),0 16px 55px rgba(80,45,4,.36)}
+}
+.tour-feature-lead{font-size:15px;line-height:1.65;color:#264459}
+.tour-feature-dialog h4{margin:16px 0 7px;color:#315e73}
+.tour-feature-examples{margin:6px 0 15px;padding-left:23px}
+.tour-feature-examples li{margin:7px 0;line-height:1.6;font-size:14px}
+.tour-feature-insight{padding:12px 14px;background:#eef8f8;border-left:4px solid #157b8a;border-radius:8px}
+.tour-feature-insight strong{color:#126779}
+.tour-feature-insight p{margin:6px 0 0;font-size:14px;line-height:1.65}
+@media(max-width:760px){.tour-feature-dialog{max-height:85dvh;overflow-y:auto}}
+@media(prefers-reduced-motion: reduce){.tour-guide-attention:not([hidden]){animation:none}}
+
+
+/* v0.9 — explicit experience choice, admin promotion checkpoint, follow-on showcase */
+.tour-experience-choice{margin:12px 0 16px;padding:9px;background:#fffaf1;border:1px solid #ffd3a8;border-radius:10px}
+.tour-experience-choice-caption{display:block;font-size:12px;color:#96551c;font-weight:700;margin:2px 0 7px}
+.tour-experience-option{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%!important;text-align:left;font-size:16px!important;font-weight:900!important;color:#753600!important;border:3px solid #f07917!important;outline:3px solid #ffd09f!important;outline-offset:1px!important;border-radius:9px!important;background:#fff0d8!important;padding:12px 16px!important;cursor:pointer}
+.tour-experience-option span{font-size:13px;font-weight:800;color:#96521b}
+.tour-experience-option:hover,.tour-experience-option:focus-visible{background:#ffe0b4!important;box-shadow:0 0 0 5px #ffaf5150!important}
+.tour-experience-option.tour-highlight{outline:4px solid #f07917!important;outline-offset:3px!important}
+#tourPromotedReservation.tour-highlight{background:#fff1dd!important;border-radius:10px;outline:4px solid #ef8324!important;outline-offset:2px!important}
+.tour-complete-banner{margin:24px 0;padding:20px 22px;background:#ebf8f4;border:2px solid #62a998;border-radius:14px;box-shadow:0 12px 25px #325b4c1c;scroll-margin-top:210px}
+.tour-complete-banner h2{margin:0 0 10px;color:#0f6b56;font-size:23px}
+.tour-complete-banner p{margin:9px 0;line-height:1.7;color:#244b43}
+#otherFeaturesPanel{scroll-margin-top:200px}
+#adminPromotionConfirmation{scroll-margin-top:210px}
+@media(max-width:760px){.tour-complete-banner{padding:15px}.tour-experience-option{padding:11px!important}.tour-experience-option span{font-size:11px}}
+/* Respect HTML hidden consistently, including links whose original styles force display. */
+[hidden]{display:none!important}
+
+
+/* v0.10 — make the waitlist status self-explanatory at a glance. */
+#tourWaitlistStatus.tour-waiting-person{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:#fff8ed;border:2px solid #ed942f;border-radius:10px;
+  padding:10px 12px;margin:6px 0;
+}
+#tourWaitlistStatus.tour-waiting-offer{
+  border-color:#ed7c15;background:#fff1dd;
+  box-shadow:0 0 0 3px rgba(237,124,21,.16);
+}
+#tourWaitlistStatus .tour-waiting-name{flex:1;min-width:0;font-weight:700;line-height:1.65}
+#tourWaitlistStatus .tour-waiting-badge{
+  display:inline-block;padding:3px 9px;margin-left:7px;
+  font-size:13px;font-weight:900;white-space:normal;
+  color:#8a3a00;background:#fff0d2;border:2px solid #ea8b28;border-radius:999px;
+}
+#tourWaitlistStatus.tour-highlight{outline:4px solid #f07816!important;outline-offset:3px!important}
+/* Place the guide ALWAYS on the upper right, including narrow screens.
+   Override older bottom-position mobile styles from v0.7. */
+.tour-bubble:not([hidden]){top:92px!important;right:18px!important;left:auto!important;bottom:auto!important;width:min(330px,calc(100vw - 36px))!important}
+@media(max-width:760px){
+  .tour-bubble:not([hidden]){
+    top:92px!important;right:12px!important;left:auto!important;
+    bottom:auto!important;width:min(310px,calc(100vw - 24px))!important;
+    max-height:min(45dvh,250px)!important;
+  }
+}

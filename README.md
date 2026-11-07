@@ -73,3 +73,17 @@ npm test
 - 公開されたソースコードにオープンソースライセンスは設定していません。使用・再配布の許諾については作成者へ確認してください。
 
 **制作：Terakoya Systems / TSTA Reserve**
+
+<!-- TSTA-RESERVE-PAGES-START -->
+## 🎾 予約・管理者確認・キャンセル待ちを体験
+
+**[ブラウザで操作できる体験デモ](https://tsta-0909.github.io/tsta-reserve-portfolio/)**
+
+参加者として予約した内容が管理者画面に反映されることを確認し、さらに満席日のキャンセル待ち・参加取消・繰り上がり模擬通知・管理者側への予約反映まで体験できます。画面右上の操作ガイドが操作場所を順番に強調します。
+
+- **動くデモ**：`docs/experience/`（模擬データ専用。Firebase本番環境には接続しません）
+- **紹介ページ**：`docs/index.html`（GitHub Pages公開用）
+- **開発コードとテスト**：`src/domain/`、`tests/`、`docs/experience/*.test.mjs`
+
+デモは本番のWeb Pushや個人データに接続しません。通知は画面内の模擬表示です。GitHub Pagesを有効にしていない間は上記のデモURLにはアクセスできません。
+<!-- TSTA-RESERVE-PAGES-END -->

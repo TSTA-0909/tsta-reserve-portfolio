@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>TSTA Reserve｜予約体験デモ</title><link rel="icon" href="assets/icon.png"><link rel="stylesheet" href="assets/css/index.css"><link rel="stylesheet" href="assets/tour.css"></head>
+<body class="tour-user">
+<div class="tour-top" role="banner"><div class="tour-top-inner"><div class="tour-top-left"><span class="tour-pill">体験デモ</span><strong>TSTA Reserve</strong><span class="tour-muted">予約する人の画面</span></div><div class="tour-top-right"><label class="tour-switch"><input id="guideToggle" type="checkbox" checked> 操作ガイド</label><button id="resetTour" class="tour-subtle-btn" type="button">↻ 最初から</button><span class="tour-stage" id="tourStep"></span></div></div><div class="tour-progress"><div id="tourProgress"></div></div></div>
+<button id="profileBtn" type="button" class="profile-floating-btn tour-profile-float" aria-label="プロフィールを開く" title="プロフィール">👤</button>
+<h1 class="user-page-title">予約カレンダー <small class="tour-identity-label">TSTAの体験用画面</small></h1>
+<main class="user-dashboard">
+<section class="user-dashboard-main" aria-label="予約操作">
+<div class="reservation-list" id="reservationListBox"><h3>あなたの予約一覧</h3><div id="reservationList"></div>
+  <div id="bookingConfirmation" class="tour-booking-confirmation" hidden aria-live="polite">
+    <p class="tour-booking-success">✅ <strong>予約が完了しました！</strong></p>
+    <p><strong id="bookingConfirmDate">11月14日</strong>・<strong>初心者・ブランク有(B)</strong> の予約が「あなたの予約一覧」に追加されています。</p>
+    <p class="tour-small">上の予約内容と名前を確認したら、次へ進みましょう。</p>
+    <button id="bookingConfirmNext" type="button" class="tour-cta">確認できた！ 次へ進む　→</button>
+  </div>
+  <div id="promotedUserConfirmation" class="tour-booking-confirmation" hidden aria-live="polite">
+    <p class="tour-booking-success">✅ <strong>キャンセル待ちから予約確定！</strong></p>
+    <p><strong id="promotedUserDate">11月21日</strong>・経験者(A)の予約が「あなたの予約一覧」に追加されました。</p>
+    <p>次は管理者画面で、<strong>同じ名前が参加者一覧に入ったこと</strong>を確かめよう。</p>
+    <button id="goAdminPromotion" type="button" class="tour-cta">管理者の参加者一覧で確認する　→</button>
+  </div></div>
+<nav id="userDashboardMenu" class="user-dashboard-menu" aria-label="表示する項目を選択">
+ <button type="button" class="user-dashboard-menu-btn" id="reservationMenu" aria-expanded="true"><span class="user-dashboard-menu-left">📅</span><span class="user-dashboard-menu-label">予約する</span><span class="user-dashboard-menu-arrow">▾</span></button>
+ <button type="button" class="user-dashboard-menu-btn" id="noticeMenu" aria-expanded="false"><span class="user-dashboard-menu-left">📢</span><span class="user-dashboard-menu-label">お知らせ</span><span class="user-dashboard-menu-arrow">▾</span></button>
+ <button type="button" class="user-dashboard-menu-btn" id="chatMenu" aria-expanded="false"><span class="user-dashboard-menu-left">💬</span><span class="user-dashboard-menu-label">管理者チャット（見本）</span><span class="user-dashboard-menu-arrow">▾</span></button>
+</nav>
+<div id="reservationActionPanel" class="user-dashboard-panel tour-action-panel">
+ <div id="wl-banner">⏳ 現在 <strong id="wlCount">0</strong> 件のキャンセル待ちに登録中</div>
+ <div class="section tour-user-profile-compact"><div>👤 予約者：<strong id="currentProfile">未登録</strong></div><button type="button" id="editProfileInline" class="tour-link-btn">プロフィールを登録・変更</button></div>
+ <div class="section p-10"><label class="notice-flex-label"><input type="checkbox" id="proxyReserveToggle"><span>代わりに友達の参加連絡される方用</span></label><div id="proxyReserveNameBox" hidden><label>友達の架空名<input id="proxyReserveName" type="text" value="若葉 かえで"></label><p class="tour-small">紹介した人と参加者を別IDで管理する考え方を模擬します。</p></div></div>
+ <div class="reservation-center"><label for="typeSelf">初心者・ブランク有(B) / 経験者(A)（本人）：</label><select id="typeSelf"><option value="">-- 選択 --</option><option value="beginner">初心者・ブランク有(B)</option><option value="experienced">経験者(A)</option></select>
+ <div id="experiencePick" class="tour-experience-choice" hidden>
+   <span id="experiencePickCaption" class="tour-experience-choice-caption">👇 次に選ぶ項目（ここを押して選択できます）</span>
+   <button id="pickBeginner" type="button" class="tour-experience-option" hidden>初心者・ブランク有(B)　<span>← こちらを選択</span></button>
+   <button id="pickExperienced" type="button" class="tour-experience-option" hidden>経験者(A)　<span>← こちらを選択</span></button>
+ </div></div>
+ <div id="calendarGuard" class="section text-center text-muted">初心者・ブランク有(B) / 経験者(A)を選択するとカレンダーが出ます</div>
+ <div class="calendar-container" id="calendarArea" aria-label="開催日カレンダー"></div>
+ <p class="tour-calendar-note">※ <strong>濃い灰色の日付</strong>は満席のためキャンセル待ちが可能です。薄い灰色は開催なし。</p>
+ <div class="section p-10"><div class="rental-header"><label class="rental-toggle-label">ラケット・シューズ貸出 <input type="checkbox" id="rentalToggle"></label></div><div id="rentalBox" hidden><p class="tour-small">デモでは貸出設定を保存しません（画面構成の例です）。</p><label><input type="checkbox" id="selfRacket"> ラケット貸出</label></div></div>
+ <div class="section friends-wrap"><h4 class="friend-title">TSTA初参加の友達を予約する場合はこちら</h4><button type="button" id="addFriendBtn">＋ 友達の参加予約はこちらから</button><p id="friendInfo" hidden class="tour-small">友達紹介機能の技術的な考え方は「人物ID管理」の別デモにあります。</p></div>
+ <div id="selectionStatus" class="tour-selection-status" aria-live="polite">区分と開催日を選んでください。</div><button type="button" id="reserveBtn" class="mt-15 tour-cta" disabled>予約する</button>
+</div>
+<div class="tour-bottom-hop" id="adminHopArea"><div><strong>今度は管理者になってみよう</strong><p>ここで予約した内容は管理者画面にも反映されます。</p></div><a class="tour-hop-button" id="goAdmin" href="admin.html">管理者画面を体験する　→</a></div>
+</section>
+<aside class="user-dashboard-side" aria-label="お知らせとその他の機能"><div class="notice-section" id="noticePanel"><div class="notice-inner"><div class="notice-row"><span class="notice-title">📢 お知らせ</span></div><div class="notice-content block"><p>🎾 次回のソフトテニス練習会（架空）</p><p class="tour-small">予約・キャンセル待ちのデモをお試しください。登録内容は本番には反映されません。</p></div></div></div><div class="tour-side-info"><h3>🎾 団体運営をひとつに</h3><p>予約・参加者確認・キャンセル待ちの流れを、2つの画面を行き来して体験できます。</p><p class="tour-small">本番アプリの画面構成・CSSを元にした採用向け模擬版です。</p></div></aside>
+</main>
+
+<dialog id="profileDialog" class="tour-dialog"><form method="dialog" id="profileForm"><h2>👤 プロフィール（デモ用）</h2><p class="tour-small">本番のプロフィール画面を簡略化しています。実名や連絡先は入力しないでください。</p><label for="profileInput">予約に使う架空名</label><input id="profileInput" value="空野 星" maxlength="30" required autocomplete="off"><div class="tour-dialog-actions"><button type="button" id="profileCancel" class="tour-subtle-btn">閉じる</button><button id="saveProfile" type="submit" class="tour-cta">架空名で保存</button></div></form></dialog>
+<dialog id="offerModal" class="tour-offer-dialog" aria-labelledby="offerTitle" aria-describedby="offerText offerExplanation" aria-modal="true"><div class="tour-notification"><div class="tour-notice-icon" aria-hidden="true">🔔</div><div class="tour-offer-copy"><strong id="offerTitle">キャンセル待ちに空きが出ました！</strong><p id="offerText"></p><p id="offerExplanation">架空の参加者が取り消されたため、あなたのキャンセル待ちが繰り上がりました。下のボタンを押して、参加予約を確定してください。</p><span>※ これはデモ用の画面内通知です。実際のプッシュ通知や本番予約処理は発生しません。</span></div><button type="button" id="offerAccept" class="tour-cta">参加予約を確定する</button></div></dialog>
+<div id="tourBubble" class="tour-bubble" hidden role="status"><div class="tour-bubble-top"><span class="tour-bubble-kicker">🎮 操作ガイド</span><button type="button" id="tourClose" aria-label="ガイドを閉じる">×</button></div><strong class="tour-bubble-title"></strong><p class="tour-bubble-text"></p><button type="button" id="tourAction" class="tour-guide-action" hidden>この日を選択する</button></div><div id="tourToast" class="tour-toast" role="status" aria-live="polite"></div>
+<script type="module" src="user.js"></script></body></html>

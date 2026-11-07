@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="TSTA Reserve — 予約・管理者確認・キャンセル待ちの流れを操作できるJavaScript開発ポートフォリオ。">
+<title>TSTA Reserve | 開発ポートフォリオ・体験デモ</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Yu Gothic","Meiryo",sans-serif;color:#183c46;background:#f2f7f8}
+*{box-sizing:border-box}body{margin:0}.wrap{max-width:1020px;margin:auto;padding:24px}
+.hero{background:linear-gradient(135deg,#064e59,#147781);color:#fff;padding:54px 0 48px}
+.hero h1{font-size:clamp(32px,5vw,53px);letter-spacing:-.03em;line-height:1.2;margin:16px 0}
+.hero p{max-width:720px;line-height:1.85;font-size:17px}.pill{display:inline-block;border:1px solid #a8e4e3;border-radius:99px;padding:5px 13px;font-size:13px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}.button{display:inline-block;padding:13px 24px;border-radius:10px;text-decoration:none;background:#ef842c;color:#fff;font-weight:800;box-shadow:0 5px 15px #0002}
+.button.secondary{background:white;color:#075a62}.button:hover{filter:brightness(1.04)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:24px 0}
+.card{background:#fff;border:1px solid #d9e9e8;padding:22px;border-radius:16px;box-shadow:0 5px 20px #1a50580a}
+.card h3{margin-top:0}.card p,.note{line-height:1.8}h2{margin:36px 0 10px}strong{font-weight:800}
+.steps{background:white;border-left:5px solid #ee8b35;border-radius:10px;padding:18px 24px;line-height:2}
+.note{margin:30px 0;color:#4e6066;font-size:14px}footer{border-top:1px solid #d7e7e7;padding:20px 0;color:#556e70;font-size:13px}
+</style></head>
+<body>
+<section class="hero"><div class="wrap"><span class="pill">JavaScript / Firebase を活用した実運用システムの紹介</span>
+<h1>TSTA Reserve<br>予約管理を、体験して理解する。</h1>
+<p>ソフトテニス団体の実運用で見つかった課題から設計・開発した予約管理システムです。参加者の予約、管理者による確認、キャンセル待ちと繰り上がりを、架空データでひと通り体験できます。</p>
+<div class="actions"><a class="button" href="experience/">🎾 体験デモを開始する</a><a class="button secondary" href="https://github.com/TSTA-0909/tsta-reserve-portfolio">技術解説・ソースコードを見る</a></div></div></section>
+<main class="wrap"><h2>体験できること</h2><div class="grid">
+<div class="card"><h3>📅 予約者の体験</h3><p>区分と日付を選んで予約。予約内容が一覧に表示されることを確認します。</p></div>
+<div class="card"><h3>👥 管理者の体験</h3><p>管理画面で日付を選び、予約した本人の名前を確認します。予約側と管理側の情報連携を体験できます。</p></div>
+<div class="card"><h3>🔔 キャンセル待ち</h3><p>満席日の登録、他の参加者の取消、模擬通知と繰り上がり予約、その後の管理者側への反映まで確認します。</p></div>
+</div><h2>体験の進め方</h2><div class="steps">1. 「体験デモを開始する」をクリック<br>2. 右上の操作ガイドに従い、オレンジ色の場所を順番に操作<br>3. 予約者画面と管理者画面を行き来し、最後まで体験<br>4. 体験完了後は、ほかの機能紹介も自由に閲覧できます</div>
+<h2>技術と工夫</h2><p>JavaScript (ES Modules) を中心に、業務の流れ全体を見通した画面設計と、同名・別人の誤統合を防ぐ人物識別などを実装しています。GitHubには、代表的なドメインロジックと回帰テストも公開しています。</p>
+<p class="note">🔒 <strong>安全な模擬環境：</strong>このデモは本番のFirebase、会員情報、通知システムへ接続しません。入力した架空のデータはブラウザの同じタブ内の一時領域に保存されます。テスト用の架空名でお試しください。通知は画面内の模擬表示です。体験版は本番機能をすべて実装したものではありません。</p>
+</main><footer><div class="wrap">Terakoya Systems | TSTA Reserve — 採用向け開発ポートフォリオ</div></footer></body></html>

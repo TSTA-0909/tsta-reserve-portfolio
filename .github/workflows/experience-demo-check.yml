@@ -1,0 +1,21 @@
+name: Validate guided demo
+on:
+  push:
+    paths:
+      - "docs/**"
+      - ".github/workflows/experience-demo-check.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - ".github/workflows/experience-demo-check.yml"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Demo tests and JavaScript syntax
+        working-directory: docs/experience
+        run: npm test

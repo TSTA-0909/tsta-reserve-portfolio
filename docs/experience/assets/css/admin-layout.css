@@ -1,0 +1,338 @@
+/* =========================================================
+   Admin layout
+   - 上部ナビゲーション
+   - 管理画面ダッシュボード配置
+   - プロフィールモーダル外枠
+   - PC / mobile responsive layout
+========================================================= */
+
+/* =========================================================
+   Admin desktop dashboard layout Ver.1
+   - PC: top navigation + two-column dashboard
+   - Mobile: previous vertical flow
+   - Profile editing remains inside popup
+========================================================= */
+:root {
+  --admin-border: #e3e8ef;
+  --admin-blue: #2563eb;
+  --admin-bg: #f7f9fc;
+  --admin-text: #172033;
+}
+
+body {
+  padding: 0;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+}
+
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  min-height: 64px;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid var(--admin-border);
+  box-shadow: 0 2px 10px rgba(15,23,42,.06);
+  backdrop-filter: blur(10px);
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+.admin-brand-logo {
+  width: 100px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #111;
+}
+
+.admin-topnav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.admin-topnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 11px;
+  border-radius: 9px;
+  color: #242c3b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-topnav a:hover,
+.admin-topnav a:focus-visible {
+  color: var(--admin-blue);
+  background: #eef5ff;
+}
+
+.admin-account-tools {
+  display: grid;
+  grid-template-columns: repeat(4, 46px);
+  gap: 6px;
+  align-items: center;
+}
+
+.profile-floating-btn,
+.admin-update-floating-btn,
+.admin-diagnosis-floating-btn,
+.admin-chat-floating-btn {
+  position: static;
+  z-index: auto;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 23px;
+  line-height: 1;
+}
+
+.profile-floating-btn {
+  color: #6b3bb2;
+  background: #f7f1ff;
+  border-color: #d9c8f4;
+}
+
+.admin-update-floating-btn {
+  color: #19733b;
+  background: #effaf3;
+  border-color: #bfe2ca;
+  font-size: 29px;
+}
+
+.admin-diagnosis-floating-btn {
+  color: #155e75;
+  background: #ecfeff;
+  border-color: #a5f3fc;
+  font-size: 22px;
+}
+
+.profile-floating-btn:hover,
+.admin-update-floating-btn:hover,
+.admin-diagnosis-floating-btn:hover,
+.admin-chat-floating-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(15,23,42,.12);
+}
+
+.admin-page {
+  width: min(1500px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 22px 0 46px;
+}
+
+.admin-page-heading {
+  margin-bottom: 18px;
+  padding: 0 4px 14px;
+  border-bottom: 3px solid #2f80ed;
+}
+
+.admin-page-heading h1 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 2vw, 30px);
+}
+
+.admin-dashboard-shell {
+  display: grid;
+  grid-template-columns: minmax(430px, 570px) minmax(520px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.admin-dashboard-shell > .main-flex {
+  display: contents;
+}
+
+.admin-dashboard-shell .calendar-col {
+  grid-column: 1;
+  grid-row: 1 / span 12;
+  width: auto;
+  max-width: none;
+  position: sticky;
+  top: 86px;
+  align-self: start;
+}
+
+.admin-dashboard-shell .participants-col,
+.admin-dashboard-shell > .admin-wide-panel {
+  grid-column: 2;
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+
+.admin-dashboard-shell .panel {
+  box-sizing: border-box;
+  padding: 18px;
+  border: 1px solid var(--admin-border);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 3px 14px rgba(15,23,42,.045);
+}
+
+.admin-dashboard-shell .participants-col:has(#reservationInfo.hidden-box) {
+  min-height: 130px;
+}
+
+.admin-dashboard-shell h3 {
+  margin-top: 0;
+}
+
+/* Profile popup: desktop side panel */
+.profile-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  padding: 78px 18px 18px;
+  overflow: auto;
+  box-sizing: border-box;
+  background: rgba(15,23,42,.42);
+}
+
+.profile-modal.show {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+.profile-modal-panel {
+  width: min(470px, 100%);
+  max-height: calc(100vh - 96px);
+  margin: 0;
+  padding: 20px;
+  overflow: auto;
+  box-sizing: border-box;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 22px 60px rgba(0,0,0,.28);
+}
+
+.profile-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.profile-modal-header h3 { margin: 0; }
+
+.profile-modal-x {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: #f0f2f5;
+  font-size: 25px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* The old inline-looking form must only exist inside the modal. */
+.profile-modal:not(.show) {
+  display: none !important;
+}
+
+@media (max-width: 1100px) {
+  .admin-topnav a { padding-inline: 7px; font-size: 12px; }
+  .admin-brand strong { font-size: 15px; }
+  .admin-dashboard-shell {
+    grid-template-columns: minmax(360px, 46%) minmax(440px, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    min-height: 58px;
+    padding: 7px 10px;
+  }
+
+  .admin-brand-logo { width: 72px; height: 38px; }
+  .admin-brand strong { overflow: hidden; text-overflow: ellipsis; }
+  .admin-topnav { display: none; }
+  .admin-account-tools { grid-template-columns: repeat(4, 42px); }
+  .profile-floating-btn,
+  .admin-update-floating-btn,
+  .admin-diagnosis-floating-btn,
+  .admin-chat-floating-btn { width: 42px; height: 42px; }
+
+  .admin-page {
+    width: auto;
+    margin: 0;
+    padding: 12px 10px 34px;
+  }
+
+  .admin-page-heading { margin-bottom: 12px; }
+
+  .admin-dashboard-shell {
+    display: block;
+  }
+
+  .admin-dashboard-shell > .main-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: none;
+    margin: 0;
+  }
+
+  .admin-dashboard-shell .calendar-col {
+    position: static;
+    width: 100%;
+    max-width: none;
+  }
+
+  .admin-dashboard-shell .participants-col,
+  .admin-dashboard-shell > .admin-wide-panel {
+    width: 100%;
+    max-width: none;
+    margin-top: 12px;
+  }
+
+  .admin-dashboard-shell .panel { padding: 12px; border-radius: 10px; }
+
+  .profile-modal {
+    padding: 10px;
+  }
+
+  .profile-modal.show {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .profile-modal-panel {
+    width: 100%;
+    max-height: calc(100vh - 20px);
+    margin: 0 auto;
+    padding: 14px;
+    border-radius: 14px;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "tsta-reserve-experience",
+  "version": "0.11.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test engine.test.mjs tour-scroll.test.mjs && node --check user.js && node --check admin.js && node --check tour.js && node --check shared.js && node --check engine.js"
+  }
+}
