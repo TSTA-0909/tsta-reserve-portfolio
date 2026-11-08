@@ -2,7 +2,7 @@
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES%20Modules-F7DF1E?logo=javascript&logoColor=000)
 ![Tests](https://img.shields.io/badge/Tests-Node.js-339933?logo=node.js&logoColor=fff)
-![Demo](https://img.shields.io/badge/Demo-local%20only-0F766E)
+![Interactive Demo](https://img.shields.io/badge/Demo-GitHub%20Pages%20ready-0F766E)
 
 **実際のソフトテニス団体で運用される予約システム「TSTA Reserve」の設計・実装から、人物情報の誤紐付けを防ぐロジックを抜粋した、採用・技術紹介用リポジトリです。**
 
@@ -75,6 +75,8 @@ npm test
 **制作：Terakoya Systems / TSTA Reserve**
 
 <!-- TSTA-RESERVE-PAGES-START -->
+**GitHub Pagesの有効化手順：** [こちらの説明](PAGES_%E5%85%AC%E9%96%8B%E8%A8%AD%E5%AE%9A%E6%89%8B%E9%A0%86.md)
+
 ## 🎾 予約・管理者確認・キャンセル待ちを体験
 
 **[ブラウザで操作できる体験デモ](https://tsta-0909.github.io/tsta-reserve-portfolio/)**
